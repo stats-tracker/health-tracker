@@ -12,13 +12,96 @@
 
 <body>
 
-  <h1>Hello world!</h1>
- <i class="fa fa-cog"></i>
+
+
+  <ul>
+    <li>
+      <a href="#home"> Home </a>
+    </li>
+    <li>
+      <a href="#page1"> Content Page 1 </a></button>
+    </li>
+    <li>
+      <a href="#page2"> Content Page 2 </a></button>
+    </li>
+    <li>
+      <a href="#page3"> Content Page 3 </a></button>
+    </li>
+  </ul>
+
+
+
+        <div class="content-container">
+        </div>
+
+
+  <script type="text/template" id="home">
+  <h1>Home</h1>
+
+  <p>
+    This is a stripped down example of routing using backbone. 
+  </p>
+  <p>
+    <a href="https://github.com/BenQuirk/backbone-routing-example">
+    See it on github.
+   </a>
+  </p>
+  </script>
+
+
+
+  <script type="text/template" id="pageOne">
+  <h1>One</h1>
+
+
+  <p>
+    Veggies es bonus vobis!</p>
+    <p>
+       Proinde vos postulo essum magis kohlrabi. Eelsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic.
+  </p>
+  <p>
+    Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini!
+  </p>
+  </script>
+
+
+
+
+
+  <script type="text/template" id="pageTwo">
+  <h1>Two</h1>
+
+  <p>
+    Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.
+  </p>
+  </script>
+
+
+
+
+
+  <script type="text/template" id="pageThree">
+  <h1>Three</h1>
+  <p>
+    Page Three content - veggies es bonus vobis!
+  </p>
+  <p>
+    Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.
+  </p>
+  </script>
+
+
+
+          <!--link to router js file which does all the routing magic-->
+
+
  <!--scripts-->
  <!--order matters-->
-  <script src="{% static 'js/bower_components/jquery/dist/jquery.min.js' %}"></script>
+  <script src="{% static 'js/bower_components/jquery/jquery/jquery.min.js' %}"></script>
   <script src="{% static 'js/bower_components/underscore/underscore-min.js' %}"></script>
   <script src="{% static 'js/bower_components/backbone/backbone-min.js' %}"></script>
+
+<script src="{% static 'js/router.js' %}"></script>
   <script src="{% static 'js/main.js' %}"></script>
 </body>
 
