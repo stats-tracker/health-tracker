@@ -19,9 +19,6 @@ function show (content){
 // the default route, which runs when the url is blank
 router.route('', function () {
 
-
-
-
 	$.ajax({
 		url: '/activities/',
 		method: 'GET'
@@ -29,8 +26,6 @@ router.route('', function () {
 	})
 	.done(testFunction)
 	.fail(arguments);
-
-
 
 	function testFunction (data){
 		console.log(data);
@@ -40,42 +35,38 @@ router.route('', function () {
 	//   console.log("title: " + data[x].title);
 
 		$('.main-content').append('<div class="activity-tab"><a href="activities/'+data[x].id+'">'+data[x].title+'</a></div>');
-
-
 }
 
-
-/*
-    $.ajax({
-      url: 'activities/',
-      method: 'GET'
-      // title
-    })
-    .then(getData)
-    .then(renderData);
-*/
-
-
 });
 
-
-
-/*// all other routes
-router.route( '', 'activities', function () {
-  show(homeContent); // pass content to show function
+$('.add-activity-button').click(function(e) {
+	var inputActivityName = $('.add-activity-text').val();
+  console.log(inputActivityName);
+  $('.add-activity-text').val('');
+	postInput(inputActivityName);
 });
 
-router.route('activites/id', function () {
-  show(pageOneContent); // pass content to show function
-});
+function postInput(input){
 
-router.route('activities/id/edit', function () {
-  show(pageTwoContent); // pass content to show function
-});
+	$.ajax({
+	url: '/activities/',
+	method: 'POST',
+	data: input
+	// title
+})
+.done(testFunction)
+.fail(arguments);
+function testFunction (data){
+		console.log('hello');
+	console.log(data);
+	console.log(data.length);
+	for (x = 0; x < data.length; x++)
+	$('.main-content').append('<div class="activity-tab"><a href="activities/'+data[x].id+'">'+data[x].title+'</a></div>');
+}
 
-router.route('page3', function () {
-  show(pageThreeContent); // pass content to show function
-});*/
+};
 
-// Kick off our initial route
+
+
+
 Backbone.history.loadUrl();

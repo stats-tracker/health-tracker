@@ -40,3 +40,31 @@ ul li a:hover {
 .activity-tab a {
   text-decoration:none;
 }
+
+.add-activity-text {
+  display:block;
+  padding:1em;
+  text-align:center;
+  margin:1em auto;
+  max-width:400px;
+  font-size: 20px;
+}
+
+.add-activity-button {
+  background-color: red;
+  display:block;
+  padding:1em;
+  text-align:center;
+  margin:1em auto;
+  max-width:200px;
+  font-size: 20px;
+  border-radius: 10px;
+  transition: .5s ease;
+  cursor: pointer;
+
+}
+
+.add-activity-button:hover {
+  background-color: blue;
+
+}
