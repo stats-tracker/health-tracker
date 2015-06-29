@@ -40,6 +40,8 @@ INSTALLED_APPS = (
 
     'django_extensions',
     'rest_framework',
+
+    'tracker',
 )
 
 MIDDLEWARE_CLASSES = (
