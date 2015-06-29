@@ -1,3 +1,6 @@
 from django.contrib import admin
+from tracker.models import Activity, Stat
 
-# Register your models here.
+admin.site.register(Activity)
+admin.site.register(Stat)
+
