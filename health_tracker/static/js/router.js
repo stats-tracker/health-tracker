@@ -33,8 +33,14 @@ router.route('', function () {
 
 
 	function testFunction (data){
-console.log(data);
-	console.log(data.forEach(data));
+		console.log(data);
+    console.log(data.length);
+		for (x = 0; x < data.length; x++)
+	//   console.log("id: " + data[x].id),
+	//   console.log("title: " + data[x].title);
+
+		$('.main-content').append('<div class="activity-tab"><a href="activities/'+data[x].id+'">'+data[x].title+'</a></div>');
+
 
 }
 
@@ -49,24 +55,6 @@ console.log(data);
     .then(renderData);
 */
 
-
-   function getData(data) {
-         // grab data from each ajax call here
-         // probably just the title
-         // and the link so we can reference the link in the view/render function?
-
-      //   id = TBD; // grab id via ajax call
-      //   title = TBD; // grab title via ajax call
-
-    } // close getData
-
-
-   function renderData(data){
-
-//        var mainView = '<a href="activities/"'+id+'/ />'+title+'"</a>"';
-//        $('.main-content').append(mainView); // go to main content div and append each item to the DOM
-
-        } // close renderData
 
 });
 
