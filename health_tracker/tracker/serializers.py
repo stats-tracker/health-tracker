@@ -11,4 +11,4 @@ class ActivitySerializer(serializers.HyperlinkedModelSerializer):
 class StatSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Stat
-        fields = ('id', 'date', 'number')
+        fields = ('id', 'url', 'date', 'number')
