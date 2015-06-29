@@ -19,6 +19,27 @@ function show (content){
 // the default route, which runs when the url is blank
 router.route('', function () {
 
+
+
+
+	$.ajax({
+		url: '/activities/',
+		method: 'GET'
+		// title
+	})
+	.done(testFunction)
+	.fail(arguments);
+
+
+
+	function testFunction (data){
+console.log(data);
+	console.log(data.forEach(data));
+
+}
+
+
+/*
     $.ajax({
       url: 'activities/',
       method: 'GET'
@@ -26,7 +47,7 @@ router.route('', function () {
     })
     .then(getData)
     .then(renderData);
-
+*/
 
 
    function getData(data) {
@@ -34,22 +55,24 @@ router.route('', function () {
          // probably just the title
          // and the link so we can reference the link in the view/render function?
 
-         id = TBD; // grab id via ajax call
-         title = TBD; // grab title via ajax call
+      //   id = TBD; // grab id via ajax call
+      //   title = TBD; // grab title via ajax call
 
     } // close getData
 
 
    function renderData(data){
 
-        var mainView = '<a href="activities/"'+id+'/ />'+title+'"</a>"';
-        $('.main-content').append(mainView); // go to main content div and append each item to the DOM
+//        var mainView = '<a href="activities/"'+id+'/ />'+title+'"</a>"';
+//        $('.main-content').append(mainView); // go to main content div and append each item to the DOM
 
         } // close renderData
 
 });
 
-// all other routes
+
+
+/*// all other routes
 router.route( '', 'activities', function () {
   show(homeContent); // pass content to show function
 });
@@ -64,7 +87,7 @@ router.route('activities/id/edit', function () {
 
 router.route('page3', function () {
   show(pageThreeContent); // pass content to show function
-});
+});*/
 
 // Kick off our initial route
 Backbone.history.loadUrl();
