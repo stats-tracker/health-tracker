@@ -6,7 +6,13 @@ class Activity(models.Model):
     class Meta:
         verbose_name_plural = "activities"
 
+    def __str__(self):
+        return self.title
+
 class Stat(models.Model):
     date = models.DateField()
     number = models.IntegerField()
     activity = models.ForeignKey(Activity)
+
+    def __str__(self):
+        return "{}/{}: {}".format(self.date, self.activity, self.number)
