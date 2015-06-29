@@ -5,4 +5,5 @@ class Activity(models.Model):
 
 class Stat(models.Model):
     date = models.DateField()
+    number = models.IntegerField()
     activity = models.ForeignKey(Activity)
