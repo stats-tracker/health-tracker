@@ -7,10 +7,11 @@ Backbone.history.start();
 // the default route, which runs when the url is blank
 router.route('', function () {
 
+
+
 	$.ajax({
 		url: '/activities/',
 		method: 'GET'
-		// title
 	})
 	.done(testFunction)
 	.fail(arguments);
@@ -26,9 +27,10 @@ router.route('', function () {
 
 
 		// add input form to main page
-		var inputHTML = '<input type="text" placeholder="New Activity" class="add-activity-text" id="inputID"><div class="add-activity-button">+ add</div>';
+		var inputHTML = '<form method="post">{% csrf_token %}<input type="text" placeholder="New Activity" class="add-activity-text" id="inputID"><div class="add-activity-button">+ add</div></form>';
 
-		$('.add-activity-container').append(inputHTML);
+
+//		$('.add-activity-container').append(inputHTML);
 
 
 // get value from user input, pass to postInput function
@@ -40,7 +42,10 @@ $('.add-activity-button').click(function(e) {
 		});
 
 
-
+$('form').submit(function(e){
+	e.stopPropagation();
+	e.preventDefault();
+});
 
 
 // second ajax call, called from button click
@@ -48,19 +53,14 @@ function postInput(input){
 			$.ajax({
 			url: '/activities/',
 			method: 'POST',
-			data: input
-			// title
+			data: ({title: input})
 		})
-		.done(testFunction)
+		.done(testFunction12)
 		.fail(arguments);
-		function testFunction(data){
+		function testFunction12(data){
+       location.reload(true); // reload page so first ajax call kicks off and loads all activities
+	}
 
-			console.log("testfunction123: " + data);
-
-			for (x = 0; x < data.length; x++)
-			$('.activity-container')
-			.append('<a href="activities/'+data[x].id+' class="activity-tab">'+data[x].title+'</a>');
-		}
 
 }
 
