@@ -2,6 +2,7 @@ from django.db import IntegrityError
 from rest_framework import viewsets, generics
 from rest_framework.exceptions import NotAcceptable
 from rest_framework.mixins import UpdateModelMixin
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from tracker.models import Activity, Stat
 from tracker.serializers import ActivitySerializer, StatSerializer, StatUpdateSerializer
 
@@ -9,12 +10,19 @@ from tracker.serializers import ActivitySerializer, StatSerializer, StatUpdateSe
 class ActivityViewSet(viewsets.ModelViewSet):
     model = Activity
     serializer_class = ActivitySerializer
-    queryset = Activity.objects.all()
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+
+    def get_queryset(self):
+        return Activity.objects.filter(user=self.request.user.id)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
 
 class StatView(generics.ListCreateAPIView, UpdateModelMixin):
     serializer_class = StatSerializer
     queryset = Stat.objects.all()
+    permission_classes = (IsAuthenticated,)
 
     def perform_create(self, serializer):
         try:
@@ -27,3 +35,4 @@ class StatUpdate(generics.RetrieveUpdateDestroyAPIView):
     model = Stat
     serializer_class = StatUpdateSerializer
     queryset = Stat.objects.all()
+    permission_classes = (IsAuthenticated,)

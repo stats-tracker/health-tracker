@@ -22,7 +22,7 @@ from accounts import views as account_views
 from django.contrib.auth import views as builtin
 
 router = DefaultRouter()
-router.register(r'activities', views.ActivityViewSet)
+router.register(r'activities', views.ActivityViewSet, base_name='activity')
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
@@ -33,4 +33,5 @@ urlpatterns = [
     url(r'^login/$', builtin.login, name="login"),
     url(r'^logout/', builtin.logout_then_login, {"login_url": "login"}, name="logout"),
     url(r'^register/$', account_views.register, name="user_register"),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
