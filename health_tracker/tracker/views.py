@@ -1,4 +1,7 @@
+from django.db import IntegrityError
 from rest_framework import viewsets, generics
+from rest_framework.mixins import UpdateModelMixin
+from rest_framework.response import Response
 from tracker.models import Activity, Stat
 from tracker.serializers import ActivitySerializer, StatSerializer
 
@@ -9,12 +12,22 @@ class ActivityViewSet(viewsets.ModelViewSet):
     queryset = Activity.objects.all()
 
 
-class StatView(generics.ListCreateAPIView):
+class StatView(generics.ListCreateAPIView, UpdateModelMixin):
     serializer_class = StatSerializer
     queryset = Stat.objects.all()
 
     def perform_create(self, serializer):
-        serializer.save(activity=Activity.objects.get(pk=self.kwargs['activity_id']))
+        try:
+            serializer.save(activity=Activity.objects.get(pk=self.kwargs['activity_id']))
+        except IntegrityError:
+            # pk = Stat.objects.filter(activity=Activity.objects.get(pk=self.kwargs['activity_id'])).get(date=serializer.validated_data['date']).id
+            # self.partial_update(self.request)
+            instance = Stat.objects.filter(activity=Activity.objects.get(pk=self.kwargs['activity_id'])).filter(
+                date=serializer.validated_data['date'])[0]
+            serializer = self.get_serializer(instance, data=self.request.data, partial=True)
+            serializer.is_valid(raise_exception=True)
+            self.perform_update(serializer)
+            return Response(serializer.data)
 
 
 class StatUpdate(generics.RetrieveUpdateDestroyAPIView):
