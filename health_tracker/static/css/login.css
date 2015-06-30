@@ -31,15 +31,12 @@ body {
 
   }
 
-header {
+h1 {
   height:100px;
   background:rgba(0,0,0,.1);
   shadow: 0 1px 3px 0 rgba(0,0,0,.5);
   text-align:center;
   margin-bottom:50px;
-}
-
-header h1 {
   margin:0;
   padding:25px 0 10px 0;
   letter-spacing:.2em;
@@ -47,21 +44,10 @@ header h1 {
   font-size:2em;
 }
 
-.main-content {
-  max-width:350px;
-  margin:0 auto;
-}
-
-
 .activity-container {
   max-width:350px;
   margin:0 auto;
 }
-.add-activity-container {
-  max-width:350px;
-  margin:0 auto;
-}
-
 
 .activity-tab {
   background:rgba(0,0,0,.3);
@@ -75,71 +61,37 @@ header h1 {
   transition:.5s ease;
   text-decoration:none;
 }
-.activity-tab a {
-  text-decoration:none;
-  color:#f8f8f8;
-  letter-spacing:.1em;
-}
-.activity-tab:hover {
-  background:#404040;
-  box-shadow: 0 1px 2px 0 rgba(0,0,0,.5);
-}
-.add-activity-text {
-  display:block;
-  padding:.75em;
-  text-align:center;
-  margin:.8em auto;
-  width:100%;
-  font-size: 1em;
+
+#id_username {
+  width: 300px;
+  margin-bottom: 3em;
+  height: 4em;
+  margin-top: 1em;
+  border-radius: 5px;
+
 }
 
-.add-activity-button {
+#id_password {
+  width: 300px;
+  height: 4em;
+  margin-top: 1em;
+  margin-bottom: 2em;
+  border-radius: 5px;
+
+}
+
+.btn {
+  width: 300px;
+  height: 3em;
   background-color: rgba(0,111,187,.8); /*#006fbb;*/
-  display:block;
-  padding:.75em;
-  text-align:center;
-  margin:1em auto;
-  max-width:100%;
-  font-size: 20px;
-  transition: .5s ease;
-  cursor: pointer;
   color:#f8f8f8;
-  font-size:1.2em;
+  font-size:.8em;
+  border-radius: 5px;
 
 }
 
-.add-activity-button:hover {
+.btn:hover {
   background-color: #004C80;
   box-shadow: 0 1px 2px 0 rgba(0,0,0,.5);
 
-}
-
-.show-activity-title {
-  background-color: red;
-}
-
-
-
-
-/* details page styles */
-.detail-title {
-  margin:0 auto;
-  display:block;
-  max-width:350px;
-  padding:.7em 1em .4em 1em;
-  text-align:center;
-  transition:.5s ease;
-  font-size:1.5em;
-  background:rgba(0,0,0,.3);
-  color:#f8f8f8;
-
-
-
-}
-.detail-title span {
-  display:block;
-  font-size:.5em;
-  margin:15px 10px 10px 10px;
-  padding:5px 5px 7px 5px;
-  background:rgba(0,0,0,.2);
 }
