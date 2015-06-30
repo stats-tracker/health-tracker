@@ -21,8 +21,10 @@ class ActivityViewSet(viewsets.ModelViewSet):
 
 class StatView(generics.ListCreateAPIView, UpdateModelMixin):
     serializer_class = StatSerializer
-    queryset = Stat.objects.all()
     permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        return Stat.objects.filter(activity=self.kwargs['activity_id'])
 
     def perform_create(self, serializer):
         try:
