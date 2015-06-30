@@ -24,7 +24,7 @@ class StatView(generics.ListCreateAPIView, UpdateModelMixin):
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
-        return Stat.objects.filter(activity=self.kwargs['activity_id'])
+        return Stat.objects.filter(activity=self.kwargs['activity_id']).order_by('date')
 
     def perform_create(self, serializer):
         try:
