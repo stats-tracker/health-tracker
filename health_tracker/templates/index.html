@@ -4,18 +4,53 @@
 
 <head>
   <meta charset="utf-8">
-  <title>index.html</title>
-
+  <title>Health Tracker</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/mobile.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/bower_components/fontawesome/css/font-awesome.min.css' %}" />
 </head>
 
 <body>
 
-  <h1>Hello world!</h1>
+<header>
+  <h1>Health Tracker</h1>
+</header>
 
+<div class="content-container">
+
+
+  <div class="main-content">
+    <!--routed content goes here-->
+
+
+    <div class="activity-container">
+    </div>
+
+
+    <div class="add-activity-container">
+    </div>
+
+
+  </div>
+
+
+
+
+</div><!--close content container-->
+
+  <!--scripts-->
+  <!--order matters-->
+  <script src="{% static 'js/bower_components/jquery/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'js/bower_components/underscore/underscore-min.js' %}"></script>
+  <script src="{% static 'js/bower_components/backbone/backbone-min.js' %}"></script>
+  <!--<script src="{% static 'js/bower_components/js-cookie/src/js.cookie.js' %}"></script>-->
+  <script src="{% static 'js/router.js' %}"></script>
   <script src="{% static 'js/main.js' %}"></script>
+
+
+
+
 </body>
 
 </html>
