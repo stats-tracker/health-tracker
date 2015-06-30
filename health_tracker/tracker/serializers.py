@@ -24,3 +24,13 @@ class StatSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Stat
         fields = ('id', 'url', 'date', 'number', 'activity')
+
+
+class StatUpdateSerializer(serializers.HyperlinkedModelSerializer):
+    activity = serializers.HyperlinkedIdentityField(read_only=True, source='activity', view_name='activity-detail')
+    date = serializers.DateField(read_only=True)
+
+    class Meta:
+        model = Stat
+        fields = ('id', 'url', 'date', 'number', 'activity', 'pk')
+
