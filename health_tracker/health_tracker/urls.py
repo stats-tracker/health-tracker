@@ -18,14 +18,19 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from rest_framework.routers import DefaultRouter
 from tracker import views
+from accounts import views as account_views
+from django.contrib.auth import views as builtin
 
 router = DefaultRouter()
 router.register(r'activities', views.ActivityViewSet)
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', TemplateView.as_view(template_name="index.html")),
+    url(r'^$', TemplateView.as_view(template_name="index.html"), name='index'),
     url(r'^api/activities/(?P<activity_id>\d+)/stats', views.StatView.as_view(), name="stats"),
     url(r'^api/stats/(?P<pk>\d+)', views.StatUpdate.as_view(), name="stat-detail"),
     url(r'^api/', include(router.urls)),
+    url(r'^login/$', builtin.login, name="login"),
+    url(r'^logout/', builtin.logout_then_login, {"login_url": "login"}, name="logout"),
+    url(r'^register/$', account_views.register, name="user_register"),
 ]

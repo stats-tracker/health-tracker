@@ -1,3 +1,5 @@
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
 from rest_framework import serializers
 from rest_framework.reverse import reverse
 from tracker.models import Activity, Stat
@@ -33,4 +35,26 @@ class StatUpdateSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Stat
         fields = ('id', 'url', 'date', 'number', 'activity', 'pk')
+
+
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    total_clicks = serializers.IntegerField(source='num_clicks', read_only=True)
+    activity_set = ActivitySerializer(many=True, read_only=True)
+
+    class Meta:
+        model = User
+        fields = ('id', 'url', 'username', 'email', 'total_clicks', 'bookmark_set', 'password')
+        write_only_fields = ('password',)
+
+    def create(self, validated_data):
+        user = super().create(validated_data)
+        user.set_password(validated_data['password'])
+        user.save()
+
+        user = authenticate(username=user.username,
+                            password=validated_data['password'])
+
+        login(self.context.get('request'), user)
+
+        return user
 
