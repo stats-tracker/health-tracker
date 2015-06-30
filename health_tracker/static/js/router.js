@@ -5,7 +5,7 @@ var router = new Backbone.Router();
 router.route('', function () {
 
 	$.ajax({
-		url: '/activities/',
+		url: 'api/activities/',
 		method: 'GET'
 	})
 	.done(testFunction)
@@ -14,7 +14,7 @@ router.route('', function () {
 	function testFunction (data){
 		console.log(data);
     for (x = 0; x < data.length; x++)
-					$('.activity-container').append('<a href="#activities/'+data[x].id+'" class="activity-tab">'+data[x].title+'</a>');
+					$('.activity-container').append('<a href="#api/activities/'+data[x].id+'" class="activity-tab">'+data[x].title+'</a>');
   }
 
 }); // end get ajax call
@@ -47,7 +47,7 @@ $('form').submit(function(e){
 // second ajax call, called from button click
 function postInput(input){
 			$.ajax({
-			url: '/activities/',
+			url: 'api/activities/',
 			method: 'POST',
 			data: ({title: input})
 		})
@@ -64,9 +64,9 @@ function postInput(input){
 
 
 // DETAILS ROUTE
-router.route('activities/:id', function (id) {
+router.route('api/activities/:id', function (id) {
 	$.ajax({
-	    url: '/activities/'+id,
+	    url: 'api/activities/'+id,
 	    method: 'GET'
 	  })
 	  .then(renderData);
@@ -78,18 +78,6 @@ router.route('activities/:id', function (id) {
 
 	  }
 
-	  function renderDatzzza(databaseArray) {
-	    var item = _.findWhere(databaseArray, { id: detailsId });   //HOW TO KNOW/SET IT?
-	    // NOTE bridgeId IS THE SAME AS VAR AS PASSED IN THE ROUTE
-	    // --- IS IT THE SAME THING  ACTUALY OR JUST A COINCIDENCE?
-	    var detailsTemplate = views['details-view'];
-	    var templateFn = _.template(detailsTemplate, { variable: 'm' });
-	    var tempHTML = templateFn(item);
-
-	    $('.main-content').html(tempHTML);
-
-	    renderCharts(item, databaseArray);   // RENDER CHART!
-	  }
 
 
 
