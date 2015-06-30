@@ -22,18 +22,22 @@
 <div class="content-container">
 
 
-  <div class="main-content">
-    <!--routed content goes here-->
 
 
-    <div class="activity-container">
-    </div>
+<div class="main-content">
+       {% if user.is_anonymous %}
+          <div class="hidden-link">
+            <!--redirect done through javascript-->
+          </div>
+       {% endif %}
 
-<div class="add-activity-container">
+
+      <div class="activity-container">
+      </div>
+
+     <div class="add-activity-container">
+     </div>
 </div>
-
-
-  </div>
 
 
 
@@ -82,7 +86,8 @@ $.ajaxSetup({
 
 
   </script>
-  <script src="{% static 'js/router.js' %}"></script>
+  <script src="{% static 'js/router-details.js' %}"></script>
+  <script src="{% static 'js/router-main.js' %}"></script>
   <script src="{% static 'js/main.js' %}"></script>
 
 
