@@ -1,16 +1,12 @@
 // Create a new instance of the backbone router object
 var router = new Backbone.Router();
 
-// Start Backbone history a necessary step for bookmarkable URL's
-Backbone.history.start();
-
 // the default route, which runs when the url is blank
 router.route('', function () {
 
 	$.ajax({
 		url: '/activities/',
 		method: 'GET'
-		// title
 	})
 	.done(testFunction)
 	.fail(arguments);
@@ -18,17 +14,19 @@ router.route('', function () {
 	function testFunction (data){
 		console.log(data);
     for (x = 0; x < data.length; x++)
-					$('.activity-container').append('<a href="activities/'+data[x].id+'" class="activity-tab">'+data[x].title+'</a>');
+					$('.activity-container').append('<a href="#activities/'+data[x].id+'" class="activity-tab">'+data[x].title+'</a>');
   }
 
 }); // end get ajax call
 
 
 
-		// add input form to main page
-		var inputHTML = '<input type="text" placeholder="New Activity" class="add-activity-text" id="inputID"><div class="add-activity-button">+ add</div>';
+// add input form to main page
+var inputHTML = '<form action="." method="post"><input type="text" placeholder="New Activity" class="add-activity-text" id="inputID"><div class="add-activity-button">+ add</div></form>';
 
-		$('.add-activity-container').append(inputHTML);
+
+//
+$('.add-activity-container').append(inputHTML);
 
 
 // get value from user input, pass to postInput function
@@ -40,7 +38,10 @@ $('.add-activity-button').click(function(e) {
 		});
 
 
-
+$('form').submit(function(e){
+	e.stopPropagation();
+	e.preventDefault();
+});
 
 
 // second ajax call, called from button click
@@ -48,26 +49,55 @@ function postInput(input){
 			$.ajax({
 			url: '/activities/',
 			method: 'POST',
-			data: input
-			// title
+			data: ({title: input})
 		})
-		.done(testFunction)
+		.done(testFunction12)
 		.fail(arguments);
-		function testFunction(data){
+		function testFunction12(data){
+       location.reload(true); // reload page so first ajax call kicks off and loads all activities
+	}
 
-			console.log("testfunction123: " + data);
-
-			for (x = 0; x < data.length; x++)
-			$('.activity-container')
-			.append('<a href="activities/'+data[x].id+' class="activity-tab">'+data[x].title+'</a>');
-		}
 
 }
 
 
 
 
+// DETAILS ROUTE
+router.route('activities/:id', function (id) {
+	$.ajax({
+	    url: '/activities/'+id,
+	    method: 'GET'
+	  })
+	  .then(renderData);
+
+	  function renderData(record) {
+			console.log(record.title);
+			var pageTitle = record.title;
+			$('.main-content').html(pageTitle);
+
+	  }
+
+	  function renderDatzzza(databaseArray) {
+	    var item = _.findWhere(databaseArray, { id: detailsId });   //HOW TO KNOW/SET IT?
+	    // NOTE bridgeId IS THE SAME AS VAR AS PASSED IN THE ROUTE
+	    // --- IS IT THE SAME THING  ACTUALY OR JUST A COINCIDENCE?
+	    var detailsTemplate = views['details-view'];
+	    var templateFn = _.template(detailsTemplate, { variable: 'm' });
+	    var tempHTML = templateFn(item);
+
+	    $('.main-content').html(tempHTML);
+
+	    renderCharts(item, databaseArray);   // RENDER CHART!
+	  }
 
 
-// backbbone stuff
-Backbone.history.loadUrl();
+
+});
+
+
+
+
+
+// Start Backbone history a necessary step for bookmarkable URL's
+Backbone.history.start();
