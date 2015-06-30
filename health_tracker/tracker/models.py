@@ -12,7 +12,10 @@ class Activity(models.Model):
 class Stat(models.Model):
     date = models.DateField()
     number = models.IntegerField()
-    activity = models.ForeignKey(Activity)
+    activity = models.ForeignKey(Activity, null=True)
+
+    class Meta:
+        unique_together = ('date', 'activity')
 
     def __str__(self):
         return "{}/{}: {}".format(self.date, self.activity, self.number)
