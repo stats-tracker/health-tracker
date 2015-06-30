@@ -4,18 +4,6 @@ var router = new Backbone.Router();
 // Start Backbone history a necessary step for bookmarkable URL's
 Backbone.history.start();
 
-
-// function that appends our html to the .content-container class
-function show (content){
-	$('.content-container').html(content);
-}
-
-// grab our content from the fake scripts and hold in variables
-//var homeContent = $('#activities').html();
-//var pageOneContent = $('#').html();
-//var pageTwoContent = $('#pageTwo').html();
-//var pageThreeContent = $('#pageThree').html();
-
 // the default route, which runs when the url is blank
 router.route('', function () {
 
@@ -29,44 +17,57 @@ router.route('', function () {
 
 	function testFunction (data){
 		console.log(data);
-    console.log(data.length);
-		for (x = 0; x < data.length; x++)
-	//   console.log("id: " + data[x].id),
-	//   console.log("title: " + data[x].title);
+    for (x = 0; x < data.length; x++)
+					$('.activity-container').append('<a href="activities/'+data[x].id+'" class="activity-tab">'+data[x].title+'</a>');
+  }
 
-		$('.main-content').append('<div class="activity-tab"><a href="activities/'+data[x].id+'">'+data[x].title+'</a></div>');
-}
+}); // end get ajax call
 
-});
 
+
+		// add input form to main page
+		var inputHTML = '<input type="text" placeholder="New Activity" class="add-activity-text" id="inputID"><div class="add-activity-button">+ add</div>';
+
+		$('.add-activity-container').append(inputHTML);
+
+
+// get value from user input, pass to postInput function
 $('.add-activity-button').click(function(e) {
-	var inputActivityName = $('.add-activity-text').val();
-  console.log(inputActivityName);
-  $('.add-activity-text').val('');
-	postInput(inputActivityName);
-});
+			var inputActivityName = $('.add-activity-text').val();
+		  console.log(inputActivityName);
+		  $('.add-activity-text').val('');
+			postInput(inputActivityName);
+		});
 
+
+
+
+
+// second ajax call, called from button click
 function postInput(input){
+			$.ajax({
+			url: '/activities/',
+			method: 'POST',
+			data: input
+			// title
+		})
+		.done(testFunction)
+		.fail(arguments);
+		function testFunction(data){
 
-	$.ajax({
-	url: '/activities/',
-	method: 'POST',
-	data: input
-	// title
-})
-.done(testFunction)
-.fail(arguments);
-function testFunction (data){
-		console.log('hello');
-	console.log(data);
-	console.log(data.length);
-	for (x = 0; x < data.length; x++)
-	$('.main-content').append('<div class="activity-tab"><a href="activities/'+data[x].id+'">'+data[x].title+'</a></div>');
+			console.log("testfunction123: " + data);
+
+			for (x = 0; x < data.length; x++)
+			$('.activity-container')
+			.append('<a href="activities/'+data[x].id+' class="activity-tab">'+data[x].title+'</a>');
+		}
+
 }
 
-};
 
 
 
 
+
+// backbbone stuff
 Backbone.history.loadUrl();

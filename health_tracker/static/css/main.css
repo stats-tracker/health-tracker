@@ -1,70 +1,123 @@
+html, body { margin: 0px;}
+* { box-sizing: border-box;}
+
 body {
   background-color: #fff;
   color: #000;
   font-size: 1.4em;
-  padding: 2em; }
+  padding: 0em;
 
-ul {
-  list-style-type: none;
-  display: inline-block;
-  margin: 0;
-  padding: .4em 0;
-  height: 70px; }
+  /* Location of the image */
+   background-image: url(http://s8.postimg.org/yf0obmyhv/bg_1.jpg);
+   background: linear-gradient(to bottom, rgba(0,0,0,.2) 1%,rgba(255,255,255,.2) 100%), url(http://s8.postimg.org/yf0obmyhv/bg_1.jpg) 0 0;
+   /* Background image is centered vertically and horizontally at all times */
+   background-position: center center;
 
-ul li {
-  display: inline-block;
-  margin-right: 2em;
-  padding-bottom: .5em; }
+   /* Background image doesn't tile */
+   background-repeat: no-repeat;
 
-ul li a {
-  text-decoration: none;
-  color: #000;
-  letter-spacing: .1em;
-  display: inline-block;
-  padding-bottom: .3em;
-  border: 0px solid #000; }
+   /* Background image is fixed in the viewport so that it doesn't move when
+      the content's height is greater than the image's height */
+   background-attachment: fixed;
 
-ul li a:hover {
-  border-bottom: 4px solid #000; }
+   /* This is what makes the background image rescale based
+      on the container's size */
+   background-size: cover;
+
+   /* Set a background color that will be displayed
+      while the background image is loading */
+   background-color: #464646;
+
+
+  }
+
+header {
+  height:100px;
+  background:rgba(0,0,0,.1);
+  shadow: 0 1px 3px 0 rgba(0,0,0,.5);
+  text-align:center;
+  margin-bottom:50px;
+}
+
+header h1 {
+  margin:0;
+  padding:25px 0 10px 0;
+  letter-spacing:.2em;
+  color:#f8f8f8;
+  font-size:2em;
+}
+
+.main-content {
+}
+
+
+.activity-container {
+  max-width:350px;
+  margin:0 auto;
+}
+.add-activity-container {
+  max-width:350px;
+  margin:0 auto;
+}
 
 
 .activity-tab {
-  border:1px solid #000;
+  background:rgba(0,0,0,.3);
+  color:#f8f8f8;
   display:block;
   padding:1em;
   text-align:center;
+  letter-spacing:.1em;
   margin:1em auto;
-  max-width:400px;
-  box-shadow: 0 1px 2px 0 rgba(0,0,0,.5);
+  max-width:100%;
+ transition:.5s ease;
+  text-decoration:none;
 }
 .activity-tab a {
   text-decoration:none;
+  color:#f8f8f8;
+  letter-spacing:.1em;
 }
-
+.activity-tab:hover {
+  background:#404040;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,.5);
+}
 .add-activity-text {
   display:block;
-  padding:1em;
+  padding:.75em;
   text-align:center;
-  margin:1em auto;
-  max-width:400px;
-  font-size: 20px;
+  margin:.8em auto;
+  width:100%;
+  font-size: 1em;
 }
 
 .add-activity-button {
-  background-color: red;
+  background-color: rgba(0,111,187,.8); /*#006fbb;*/
   display:block;
-  padding:1em;
+  padding:.75em;
   text-align:center;
   margin:1em auto;
-  max-width:200px;
+  max-width:100%;
   font-size: 20px;
-  border-radius: 10px;
   transition: .5s ease;
   cursor: pointer;
+  color:#f8f8f8;
+  font-size:1.2em;
 
 }
 
 .add-activity-button:hover {
-  background-color: blue;
+  background-color: #004C80;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,.5);
 
+}
+
+
+
+
+
+
+@media (max-device-width: 600px){
+    h1 {font-size:1em;}
+    body { border:10px solid red;}
 }
