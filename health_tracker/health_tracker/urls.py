@@ -25,5 +25,7 @@ router.register(r'activities', views.ActivityViewSet)
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', TemplateView.as_view(template_name="index.html")),
+    url(r'^activities/(?P<activity_id>\d+)/stats', views.StatView.as_view(), name="stats"),
+    url(r'^stats/(?P<pk>\d+)', views.StatUpdate.as_view(), name="stat-detail"),
     url(r'^', include(router.urls)),
 ]
