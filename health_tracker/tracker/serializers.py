@@ -18,7 +18,7 @@ class ActivitySerializer(serializers.HyperlinkedModelSerializer):
 
 
 class StatSerializer(serializers.HyperlinkedModelSerializer):
-    activity = serializers.HyperlinkedRelatedField(read_only=True, view_name='activity-detail')
+    activity = serializers.HyperlinkedIdentityField(read_only=True, source='activity', view_name='activity-detail')
     date = serializers.DateField()
 
     class Meta:
