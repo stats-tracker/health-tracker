@@ -16,9 +16,7 @@ $.ajax({
 .fail(arguments);
 
 function testFunction (data){
-
 	console.log("DEETS data: " + data[0].number);
-
 	for (var x = 0; x < data.length; x++) {
 				$('.main-content').append('<div class="activity-tab">'+data[x].number+'</div>');
 			}
@@ -47,21 +45,32 @@ $('form').submit(function(e){ e.stopPropagation(); e.preventDefault();});
 function updateActivityDetails(deets){
 	console.log(deets);
 
-	$.ajax({
-			url: 'api/activities/'+id+'/stats/',
-			method: 'POST',
-			data: ({number: deets})
-	})
-		.then(renderDeets);
 
-		function renderDeets(deets) {
-			console.log(deets);
-	//		console.log("deets: " + deets);
-	//		console.log("deets.title: " + deets.title);
-			//var pageTitle = record.title;
-		//	$('.main-content').html(deets.number);
+/*
+url: '/api/activities/' + parseInt(id) + '/stats/',
+		method: 'POST',
+		contentType: 'application/json',
+		data: JSON.stringify(activityData)
+*/
+
+
+var activityData = {number: deets};
+console.log(deets);
+
+	$.ajax({
+		//   	url: '/api/activities/'+ parseInt(id) + '/stats/',
+    	url: '/api/stats/'+ parseInt(id) + '/',
+	  		method: 'POST',
+		//	data: ({number: deets})
+		    contentType: 'application/json',
+		    data: JSON.stringify(activityData)
+			}).done(function (data) {
+		      console.log(data);
+		    }).fail(function () {
+		      console.log(arguments);
+		    });
 		}
-   }
+
 
 
 

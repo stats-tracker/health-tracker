@@ -1,11 +1,20 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <title>Health Tracker</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+
 </head>
 <body>
-    <h2>Register</h2>
+    <h1>Register</h1>
+
+
+
+    <div class= "activity-container">
+
+      <div class= "activity-tab">
 
         <form method="POST" action="{% url 'user_register' %}">
 
@@ -17,5 +26,8 @@
             <input type="hidden" name="next" value="{{ next }}"/>
         </form>
 
+
+  </div>
+</div>
 </body>
 </html>
