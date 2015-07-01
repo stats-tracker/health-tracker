@@ -65,7 +65,7 @@ h1 {
 #id_username {
   width: 300px;
   margin-bottom: 3em;
-  height: 4em;
+  height: 2.5em;
   margin-top: 1em;
   border-radius: 5px;
 
@@ -73,7 +73,7 @@ h1 {
 
 #id_password {
   width: 300px;
-  height: 4em;
+  height: 2.5em;
   margin-top: 1em;
   margin-bottom: 2em;
   border-radius: 5px;
@@ -95,3 +95,11 @@ h1 {
   box-shadow: 0 1px 2px 0 rgba(0,0,0,.5);
 
 }
+
+
+
+/* registeration / login pages */
+a { text-decoration: underline; color: #fff; }
+.helptext { display:block; font-size:.6em; margin-bottom:15px;}
+label { display: block; }
+input { margin-bottom:10px; font-size: .8em; padding-left:10px; }
